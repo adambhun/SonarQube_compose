@@ -24,7 +24,7 @@ ulimit -u 4096
 * Stop and remove everything
 
 	`docker-compose down`
-* Start scanning - from this folder. Excluded xmls from every folder to provide an example.
+* Start scanning - from this folder. Excluded xmls from every folder to provide an example. "sonar.sources" is the name of the folder that should contain the files to analyze
 
 <!-- TODO: volume -->
 ```
@@ -42,7 +42,8 @@ docker run --net sonarnet \
 
 
 # Other notes
-* sonarproject.properties file does not work - except the basedir property
-* https://docs.sonarqube.org/latest/analysis/analysis-parameters/
+* Quality profiles can be added manually via SonarQube's webapp. Let me know if you know where SonarQube stores them.
 * Send a pull request if you manage to get the alpine-based SonarScanner to work with Shellcheck.
 * The Dockerfile is for SonarScanner. It's the same as Sonarsource's but has Shellcheck installed.
+* sonarproject.properties file does not work - except the basedir property
+* https://docs.sonarqube.org/latest/analysis/analysis-parameters/
