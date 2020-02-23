@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  sonarqube:
+    container_name: sonarqube
+    stop_grace_period: 90s
+    restart: unless-stopped
+    command: -Dsonar.ce.javaOpts=-Xmx3072m -Dsonar.web.javaOpts=-Xmx3072m
+    depends_on:
+      - db
+    image: sonarqube:7.9.2-community
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarnet
+    environment:
+      - TZ=Europe/Budapest
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonar-postgres:5432/sonar
+    volumes:
+      - "./sonarqube_conf:/opt/sonarqube/conf"
+      - "./sonarqube_data:/opt/sonarqube/data"
+      - "./sonarqube_extensions:/opt/sonarqube/extensions"
+
+  db:
+    container_name: sonar-postgres
+    image: postgres:12.1-alpine
+    ports:
+      - "5432:5432"
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - "./postgresql:/var/lib/postgresql"  #! WARNING /data may work better
+
+
+networks:
+  sonarnet:
+    name: sonarnet
+    driver: bridge
