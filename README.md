@@ -12,8 +12,8 @@ Notes:
 
 *To modify this kernel parameter permanently, append: `vm.max_map_count=262144` to `/etc/sysctl.conf`
 
-Note: if this fails the setting has probably been overridden by a file in `/etc/sysctl.d` that has the
- same setting defined in it.
+	Note: if this fails the setting has probably been overridden by a file in `/etc/sysctl.d` that has the
+ 	same setting defined in it.
 
 
 # Usage
