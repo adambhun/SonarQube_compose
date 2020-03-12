@@ -1,14 +1,20 @@
-# Configuring VM resource settings
+# Prerequisites
 
-Note: The commands below modify this file:
-/etc/sysctl.conf
 
-```
-sysctl -w vm.max_map_count=262144
-sysctl -w fs.file-max=65536
-ulimit -n 65536
-ulimit -u 4096
-```
+Set the maximum VM map count with this command:
+
+`sysctl -w vm.max_map_count=262144`
+
+
+Notes:
+
+*This persists for the current session only (modifies `/proc/sys/vm/max_map_count`)
+
+*To modify this kernel parameter permanently, append: `vm.max_map_count=262144` to `/etc/sysctl.conf`
+
+Note: if this fails the setting has probably been overridden by a file in `/etc/sysctl.d` that has the
+ same setting defined in it.
+
 
 # Usage
 
