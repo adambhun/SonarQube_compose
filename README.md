@@ -1,12 +1,12 @@
 # Prerequisites
-
+## Linux
 
 Set the maximum VM map count with this command:
 
 `sysctl -w vm.max_map_count=262144`
 
 
-Notes:
+### Notes:
 
 *This persists for the current session only (modifies `/proc/sys/vm/max_map_count`)
 
@@ -24,7 +24,7 @@ Notes:
 * Stop - containers can be restarted
 
 	`docker-compose stop`
-* Restart containers
+* Start stopped containers
 
 	`docker-compose start`
 * Stop and remove everything
@@ -38,7 +38,7 @@ docker run --net sonarnet \
 	--user="$(id -u):$(id -g)" \
 	-v "$PWD:/usr/src" \
 	-e shellcheck=/usr/bin/shellcheck \
-	-it adambhun/sh-sonarscanner-4.0.0-full \
+	-it adambhun/sh-sonarscanner-4.0.0-full:latest \
 	-Dsonar.projectKey="faszkosar" \
 	-Dsonar.projectName="faszkosar" \
 	-Dsonar.projectVersion="1" \
