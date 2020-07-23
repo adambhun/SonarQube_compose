@@ -34,7 +34,7 @@ services:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
     volumes:
-      - sonarqube_db:/var/lib/postgresql
+      - sonarqube_db:/var/lib/postgresql/data
 
 
 networks:
@@ -45,26 +45,34 @@ networks:
 
 volumes:
   sonarqube_conf:
+    labels:
+      project: sonarqube-compose
     driver: local
     driver_opts:
       type: none
       device: $PWD/sonarqube_conf
       o: bind
   sonarqube_data:
+    labels:
+      project: sonarqube-compose
     driver: local
     driver_opts:
       type: none
       device: $PWD/sonarqube_data
       o: bind
   sonarqube_extensions:
+    labels:
+      project: sonarqube-compose
     driver: local
     driver_opts:
       type: none
       device: $PWD/sonarqube_extensions
       o: bind
   sonarqube_db:
+    labels:
+      project: sonarqube-compose
     driver: local
     driver_opts:
       type: none
-      device: $PWD/postgresql
+      device: $PWD/postgresql/data
       o: bind

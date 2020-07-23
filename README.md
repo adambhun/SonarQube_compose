@@ -1,10 +1,11 @@
 # Prerequisites
 
-A v3.8 compose file needs Docker Engine 19.03 and docker-compose 1.25.5, though the content of the
+A v3.7 compose file needs Docker Engine 19.03 and docker-compose 1.25.5, though the content of the
  docker-compose.yml file is probably backward compatible with older versions.
 
 
-The Sonarqube and PostgreSQL containers needs three directories with write permissions. These are:
+The Sonarqube and PostgreSQL containers need directories with write permissions - hence the need for the "gitkeep" 
+files. These are:
 
 * sonarqube_conf
 * sonarqube_data
@@ -22,9 +23,19 @@ Notes:
 * This persists for the current session only (modifies `/proc/sys/vm/max_map_count`)
 
 * To modify this kernel parameter permanently, append: `vm.max_map_count=262144` to `/etc/sysctl.conf`
-		<br> Note: if this fails the setting has probably been overridden by a file in `/etc/sysctl.d` 
+		<br> Note: if this fails the setting has probably been overridden by a file in `/etc/sysctl.d`
 		that has the same setting defined in it.
 
+Setting the maximum VM map count should be enough on most systems. If not, the following instructions might help you:
+
+* Increase the maximum number of open files:
+		`sysctl -w fs.file-max=65536`
+
+* Set the maximum file descriptors for a process:
+		`ulimit -n 65536`
+
+* Set the maximum number of user processes:
+		`ulimit -u 4096`
 
 # Usage
 
