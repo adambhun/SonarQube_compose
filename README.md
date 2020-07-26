@@ -4,8 +4,13 @@ A v3.7 compose file needs Docker Engine 19.03 and docker-compose 1.25.5, though 
  docker-compose.yml file is probably backward compatible with older versions.
 
 
+<<<<<<< HEAD
 The Sonarqube and PostgreSQL containers need directories with write permissions - hence the need for the "gitkeep" 
 files. These are:
+=======
+The Sonarqube and PostgreSQL containers need the following directories with write permissions - the
+ `folders.sh` script can create them for you.
+>>>>>>> Volume labels, sql volume name, folders, profile names
 
 * sonarqube_conf
 * sonarqube_data
